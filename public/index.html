@@ -42,7 +42,7 @@
 
     <div class="g-container" id="charging">
       <div class="g-number" id="count">0%</div>
-      <div class="g-text" id="txt">  </div>
+      <div class="g-text" id="txt"></div>
       <div class="g-contrast">
         <div class="g-circle"></div>
         <ul class="g-bubbles">
@@ -77,7 +77,7 @@
         height: 100px;
         width: 100px;
         border-radius: 50%;
-        background-color: #66FF00;
+        background-color: #66ff00;
         animation: ymotion 1s linear infinite alternate;
       }
       .div:nth-of-type(1) {
@@ -141,7 +141,7 @@
       .g-number {
         position: absolute;
         width: 300px;
-        top: 27%;
+        top: 22%;
         text-align: center;
         font-size: 32px;
         z-index: 10;
@@ -150,7 +150,7 @@
       .g-text {
         position: absolute;
         width: 300px;
-        top: 40%;
+        top: 35%;
         text-align: center;
         font-size: 15px;
         z-index: 10;
@@ -373,21 +373,21 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       document.getElementById("charging").style.display = "none";
-      const element = document.getElementById("count");
       let socket = io();
       socket.on("update", (text) => {
         if (text > 0) {
           document.getElementById("charging").style.display = "block";
           document.getElementById("screen-saver").style.display = "none";
         }
-        if(text>=5){
-          document.getElementById("txt").innerText="Fast Charging";
+        if (text >= 5) {
+          document.getElementById("txt").innerText = "Fast Charging";
         }
         if (text <= 100) {
-          element.innerText = text + "%";
+          document.getElementById("count").innerText = text + "%";
         } else {
           setTimeout(() => {
-            element.innerText = "0%";
+            document.getElementById("count").innerText = "0%";
+            document.getElementById("txt").innerText = " ";
             document.getElementById("charging").style.display = "none";
             document.getElementById("screen-saver").style.display = "block";
           }, 2000);
